@@ -447,7 +447,7 @@ function getResponsiveProgressSize() {
 }
 
 function getResponsiveHelperSize() {
-  return width() >= 900 ? 20 : 12;
+  return width() >= 900 ? 30 : 20;
 }
 
 function createGameUI() {
