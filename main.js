@@ -1298,11 +1298,11 @@ function showPwaPopup() {
 
   if (isIOS) {
     text.innerHTML =
-      "No iPhone: toque em '...' depois 'Compartilhar' e depois em 'Adicionar à Tela de Início.'";
+      "No iPhone: toque em '...' depois 'Compartilhar' e depois em 'Adicionar à Tela de Início'. Após instalação, abra o aplicativo instalado no seu celular.";
     installButton.style.display = "none";
   } else {
     text.textContent =
-      "Adicione o jogo à tela inicial para jogar em tela cheia.";
+      "Adicione o jogo à tela inicial para jogar em tela cheia corretamente. Após instalação, abra o aplicativo instalado no seu celular ao invés do navegador.";
     installButton.style.display = "inline-block";
   }
 
