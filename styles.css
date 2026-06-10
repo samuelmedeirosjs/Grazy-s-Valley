@@ -111,6 +111,67 @@ canvas {
   display: block;
 }
 
+.pwa-popup {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.72);
+}
+
+.pwa-card {
+  width: min(90vw, 360px);
+  padding: 22px;
+  border-radius: 18px;
+  background: white;
+  color: #222;
+  text-align: center;
+  font-family: sans-serif;
+}
+
+#pwa-close {
+  float: right;
+  border: 0;
+  background: transparent;
+  font-size: 24px;
+}
+
+#pwa-install {
+  margin-top: 12px;
+  padding: 12px 18px;
+  border: 0;
+  border-radius: 999px;
+  background: #ff6fae;
+  color: white;
+  font-weight: bold;
+}
+
+#rotate-warning {
+  position: fixed;
+  inset: 0;
+  z-index: 999999;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: #000;
+  color: white;
+  text-align: center;
+  font-family: sans-serif;
+  padding: 24px;
+}
+
+@media (orientation: portrait) {
+  #rotate-warning {
+    display: flex;
+  }
+
+  #game {
+    display: none;
+  }
+}
+
 @media (min-width: 900px) {
   #joystick {
     left: 36px;

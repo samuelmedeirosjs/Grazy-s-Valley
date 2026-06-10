@@ -1243,6 +1243,84 @@ function showCreditsAndLogo(overlay) {
   });
 }
 
+let lastOrientationWasPortrait = window.innerHeight > window.innerWidth;
+
+function isPortraitMode() {
+  return window.innerHeight > window.innerWidth;
+}
+
+function handleOrientationChange() {
+  const isPortrait = isPortraitMode();
+
+  if (isPortrait) {
+    lastOrientationWasPortrait = true;
+    return;
+  }
+
+  if (lastOrientationWasPortrait) {
+    lastOrientationWasPortrait = false;
+
+    setTimeout(() => {
+      window.location.reload();
+    }, 350);
+  }
+}
+
+window.addEventListener("resize", handleOrientationChange);
+window.addEventListener("orientationchange", handleOrientationChange);
+
+let deferredInstallPrompt = null;
+
+window.addEventListener("beforeinstallprompt", (event) => {
+  event.preventDefault();
+  deferredInstallPrompt = event;
+});
+
+window.addEventListener("load", () => {
+  setTimeout(showPwaPopup, 800);
+});
+
+function showPwaPopup() {
+  const isStandalone =
+    window.matchMedia("(display-mode: standalone)").matches ||
+    window.navigator.standalone === true;
+
+  if (isStandalone) return;
+
+  const popup = document.getElementById("pwa-popup");
+  const text = document.getElementById("pwa-text");
+  const installButton = document.getElementById("pwa-install");
+  const closeButton = document.getElementById("pwa-close");
+
+  const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
+
+  popup.style.display = "flex";
+
+  if (isIOS) {
+    text.innerHTML =
+      "No iPhone: toque em '...' depois 'Compartilhar' e depois em 'Adicionar à Tela de Início.'";
+    installButton.style.display = "none";
+  } else {
+    text.textContent =
+      "Adicione o jogo à tela inicial para jogar em tela cheia.";
+    installButton.style.display = "inline-block";
+  }
+
+  closeButton.onclick = () => {
+    popup.style.display = "none";
+  };
+
+  installButton.onclick = async () => {
+    if (!deferredInstallPrompt) return;
+
+    deferredInstallPrompt.prompt();
+    await deferredInstallPrompt.userChoice;
+
+    deferredInstallPrompt = null;
+    popup.style.display = "none";
+  };
+}
+
 // ===============================
 // INÍCIO
 // ===============================
