@@ -995,7 +995,7 @@ function fadeToBlack() {
 // ===============================
 
 function joystickCenter() {
-  return vec2(120, height() - 150);
+  return vec2(120, height() - 130);
 }
 
 function createJoystickUI() {
