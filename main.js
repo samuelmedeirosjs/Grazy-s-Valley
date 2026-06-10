@@ -1297,7 +1297,7 @@ function showPwaPopup() {
 
   popup.style.display = "flex";
 
-  if (!isIOS) {
+  if (isIOS) {
     text.innerHTML =
       "Toque no ícone de compartilhar do seu navegador como este acima(exemplo) depois em 'Adicionar à Tela de Início'. Após instalação, abra o aplicativo instalado no seu celular. Caso esteja utilizando o Safari, toque em '...', depois em 'Compartilhar' e 'Adicionar à Tela de Início'";
     installButton.style.display = "none";
