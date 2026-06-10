@@ -1291,15 +1291,17 @@ function showPwaPopup() {
   const text = document.getElementById("pwa-text");
   const installButton = document.getElementById("pwa-install");
   const closeButton = document.getElementById("pwa-close");
+  const shareImage = document.getElementById("shareImage");
 
   const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
 
   popup.style.display = "flex";
 
-  if (isIOS) {
+  if (!isIOS) {
     text.innerHTML =
-      "No iPhone: toque em '...' depois 'Compartilhar' e depois em 'Adicionar à Tela de Início'. Após instalação, abra o aplicativo instalado no seu celular.";
+      "Toque no ícone de compartilhar do seu navegador como este acima(exemplo) depois em 'Adicionar à Tela de Início'. Após instalação, abra o aplicativo instalado no seu celular. Caso esteja utilizando o Safari, toque em '...', depois em 'Compartilhar' e 'Adicionar à Tela de Início'";
     installButton.style.display = "none";
+    shareImage.style.display = "block";
   } else {
     text.textContent =
       "Adicione o jogo à tela inicial para jogar em tela cheia corretamente. Após instalação, abra o aplicativo instalado no seu celular ao invés do navegador.";

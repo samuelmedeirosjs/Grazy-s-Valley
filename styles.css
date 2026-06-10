@@ -162,6 +162,12 @@ canvas {
   padding: 24px;
 }
 
+#shareImage {
+  display: none;
+  width: 30px;
+  margin: 0 auto;
+}
+
 @media (orientation: portrait) {
   #rotate-warning {
     display: flex;
