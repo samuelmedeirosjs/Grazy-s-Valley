@@ -91,9 +91,15 @@ function startMusic() {
   bgMusic.loop = true;
   bgMusic.volume = 0.55;
 
-  bgMusic.currentTime = 15;
+  bgMusic.addEventListener("loadedmetadata", () => {
+    bgMusic.currentTime = 15;
 
-  bgMusic.play().catch(console.error);
+    bgMusic.play().catch((err) => {
+      console.error(err);
+    });
+  });
+
+  bgMusic.load();
 }
 
 function startEndingMusic() {
@@ -104,7 +110,11 @@ function startEndingMusic() {
   endingMusic.loop = true;
   endingMusic.volume = 0;
 
-  endingMusic.play().catch(console.error);
+  endingMusic.load();
+
+  endingMusic.addEventListener("canplaythrough", () => {
+    endingMusic.play().catch(console.error);
+  });
 
   // Fade in da nova música
   let fadeIn = setInterval(() => {
